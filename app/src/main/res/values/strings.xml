@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">DSS Solutions</string>
+    <string name="login_here">Login Here!</string>
+    <string name="username">UserName</string>
+    <string name="login">Login</string>
+    <string name="hello">Hello</string>
+    <string name="let_s_have_a_call">Let\'s Have a Call</string>
+    <string name="target_username">Target Username</string>
+    <string name="startVideoCall">startVideoCall</string>
+    <string name="start_video_call_with_family_member_3">Start video call with Family Member 3</string>
+    <string name="start_video_call_with_family_member_2">Start video call with Family Member 2</string>
+    <string name="family_member_2">Family Member 2</string>
+    <string name="account">account</string>
+    <string name="no_call_yet">No call yet!</string>
+    <string name="family_member_1">Family Member 1</string>
+    <string name="start_video_call_with_family_member_1">Start video call with Family Member 1</string>
+    <string name="family_member_3">Family Member 3</string>
+    <string name="select_role">Select Role:</string>
+    <string name="prisoner">Prisoner</string>
+    <string name="receiver">Receiver</string>
+    <string name="user_id">User ID</string>
+    <string name="password">Password</string>
+    <string name="receiver_name">Receiver Name</string>
+    <string name="relation_with_prisoner">Relation with Prisoner</string>
+</resources>
