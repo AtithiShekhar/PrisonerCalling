@@ -5,8 +5,6 @@ import android.os.Bundle
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
-import com.zegocloud.uikit.prebuilt.call.ZegoUIKitPrebuiltCallService
-import com.zegocloud.uikit.prebuilt.call.invite.ZegoUIKitPrebuiltCallInvitationConfig
 
 class LoginActivity : AppCompatActivity() {
 
@@ -46,17 +44,11 @@ class LoginActivity : AppCompatActivity() {
                     Toast.makeText(this,"Invalid Prisoner ID/Password", Toast.LENGTH_SHORT).show()
                 }
             } else if (rbReceiver.isChecked) {
-                if (id == DemoUsers.prisonerId && password == DemoUsers.prisonerPassword &&
+                if (id == DemoUsers.receiverId && password == DemoUsers.receiverPassword &&
                     receiverName.isNotEmpty() && relation.isNotEmpty()) {
                     goToMain("receiver", receiverName)
                 } else {
-                    Toast.makeText(this,"Invalid info for Receiver", Toast.LENGTH_SHORT).show()
-                }
-            } else {
-                Toast.makeText(this,"Select Role", Toast.LENGTH_SHORT).show()
-            }
-        }
-    }
+                    Toast.makeText(this,"Invalid info for Receiver", Toast.LENGTH_SHORT).show() } } } }
 
     private fun toggleFields() {
         if (rbReceiver.isChecked) {
@@ -65,13 +57,10 @@ class LoginActivity : AppCompatActivity() {
         } else {
             receiverNameInput.visibility = View.GONE
             relationInput.visibility = View.GONE
-        }
-    }
-
+        } }
     private fun goToMain(role: String, username: String) {
         val intent = Intent(this, MainActivity::class.java)
         intent.putExtra("role", role)
         intent.putExtra("username", username)
         startActivity(intent)
-    }
-}
+    } }
