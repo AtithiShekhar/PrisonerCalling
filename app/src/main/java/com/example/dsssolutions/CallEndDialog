@@ -1,0 +1,93 @@
+package com.example.dsssolutions
+
+import android.app.AlertDialog
+import android.content.Context
+import android.widget.LinearLayout
+import android.widget.TextView
+import android.graphics.Color
+import android.graphics.Typeface
+
+class CallEndDialog(
+    private val context: Context,
+    private val callDurationMinutes: Int,
+    private val currentBalance: Int,
+    private val onDialogClosed: (Int) -> Unit
+) {
+
+    fun show() {
+        val cost = calculateCost(callDurationMinutes)
+        val newBalance = currentBalance - cost
+
+        val layout = LinearLayout(context).apply {
+            orientation = LinearLayout.VERTICAL
+            setPadding(60, 40, 60, 40)
+        }
+        val titleText = TextView(context).apply {
+            text = "⏰ Time Over!"
+            textSize = 24f
+            setTextColor(Color.parseColor("#D32F2F"))
+            typeface = Typeface.DEFAULT_BOLD
+            setPadding(0, 0, 0, 30)
+        }
+
+        val durationText = TextView(context).apply {
+            text = "Call Duration: $callDurationMinutes minutes"
+            textSize = 18f
+            setTextColor(Color.parseColor("#424242"))
+            setPadding(0, 0, 0, 15)
+        }
+
+        val costText = TextView(context).apply {
+            text = "Call Cost: ₹$cost"
+            textSize = 20f
+            setTextColor(Color.parseColor("#E65100"))
+            typeface = Typeface.DEFAULT_BOLD
+            setPadding(0, 0, 0, 15)
+        }
+        val previousBalanceText = TextView(context).apply {
+            text = "Previous Balance: ₹$currentBalance"
+            textSize = 16f
+            setTextColor(Color.parseColor("#616161"))
+            setPadding(0, 0, 0, 10) }
+        val newBalanceText = TextView(context).apply {
+            text = "Available Balance: ₹$newBalance"
+            textSize = 20f
+            setTextColor(if (newBalance >= 0) Color.parseColor("#2E7D32") else Color.parseColor("#D32F2F"))
+            typeface = Typeface.DEFAULT_BOLD
+            setPadding(0, 0, 0, 20)
+        }
+
+        if (newBalance < 50) {
+            val warningText = TextView(context).apply {
+                text = "⚠️ Low Balance! Please recharge soon."
+                textSize = 16f
+                setTextColor(Color.parseColor("#FF6F00"))
+                typeface = Typeface.DEFAULT_BOLD
+                setPadding(0, 0, 0, 10)
+            }
+            layout.addView(warningText)
+        }
+
+        layout.addView(titleText)
+        layout.addView(durationText)
+        layout.addView(costText)
+        layout.addView(previousBalanceText)
+        layout.addView(newBalanceText)
+
+        val dialog = AlertDialog.Builder(context)
+            .setView(layout)
+            .setPositiveButton("OK") { _, _ ->
+                onDialogClosed(newBalance)
+            }
+            .setCancelable(false)
+            .create()
+
+        dialog.show() }
+
+    private fun calculateCost(minutes: Int): Int {
+        return when (minutes) {
+            1 -> 10
+            5 -> 40
+            10 -> 75
+            15 -> 120
+            else -> minutes * 10 } } }
